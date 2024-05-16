@@ -27,6 +27,7 @@ function Integration({
         // fetchGemini(prompt1).then((result1) => {
         //   setResultText(result1);
         // });
+        setResultText("Loading...");
         const result: string = await resizeFetch(csv1, resize1);
         setResultText(result);
       } else {
@@ -34,6 +35,7 @@ function Integration({
       }
     } else if (!csv1) {
       if (resize2 !== 1) {
+        setResultText("Loading...");
         const systemInstruction2 = `全体量を${resize2}倍にしてください。`;
         const prompt2 = systemInstruction2 + "\n\n" + csv2;
         fetchGemini(prompt2).then((result2) => {
@@ -43,6 +45,7 @@ function Integration({
         setResultText(csv2);
       }
     } else {
+      setResultText("Loading...");
       const preResult1: string = await resizeFetch(csv1, resize1);
       const preResult2: string = await resizeFetch(csv2, resize2);
       const combinedResult: string = await integrateFetch(

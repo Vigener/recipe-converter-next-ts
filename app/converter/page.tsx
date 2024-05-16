@@ -1,8 +1,10 @@
 "use client";
 
 import React, { useState } from "react";
+import { Helmet } from "react-helmet";
 import FirstStep from "@/features/converter/components/firstStep";
 import Integration from "@/features/converter/components/integration";
+// import { Metadata } from "next";
 
 function ConverterPage() {
   const [pastedData1, setPastedData1] = useState<string>("");
@@ -14,6 +16,13 @@ function ConverterPage() {
 
   return (
     <div className="container mx-auto px-4">
+      <Helmet>
+        <title>Recipe Converter</title>
+        <meta
+          name="description"
+          content="Recipe Converter from recipe site data to csv data."
+        />
+      </Helmet>
       <h1 className="container text-2xl font-bold mb-2">
         レシピデータ整形ツール
       </h1>

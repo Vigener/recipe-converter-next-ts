@@ -1,4 +1,4 @@
-// "use client";
+"use client";
 
 // import React, { useState, useEffect, useRef } from "react";
 
@@ -162,42 +162,42 @@
 //   alert("Hello, World!");
 // };
 
-// // メインコンポーネント
-// const App: React.FC = () => {
-//   const { activeHint, hints, showHints, hintContainerRef } =
-//     useKeyboardEvents();
-//   const [input, setInput] = useState("");
-//   const [text, setText] = useState("");
+// メインコンポーネント
+const App: React.FC = () => {
+  // const { activeHint, hints, showHints, hintContainerRef } =
+  //   useKeyboardEvents();
+  // const [input, setInput] = useState("");
+  // const [text, setText] = useState("");
 
-//   return (
-//     <div className="flex justify-center items-center h-screen bg-gray-100">
-//       <div className="bg-white p-8 rounded shadow">
-//         <input
-//           type="text"
-//           className="w-full mb-4 p-2 border border-gray-300 rounded"
-//           value={input}
-//           onChange={(event) => setInput(event.target.value)}
-//         />
-//         <textarea
-//           value={text}
-//           className="w-full mb-4 p-2 border border-gray-300 rounded"
-//           onChange={(event) => setText(event.target.value)}
-//         ></textarea>
-//         <button
-//           className="px-4 py-2 bg-blue-500 text-white rounded"
-//           onClick={handleClick}
-//         >
-//           Click me
-//         </button>
-//       </div>
-//       {/* <HintDisplay
-//         activeHint={activeHint}
-//         hints={hints}
-//         showHints={showHints}
-//         hintContainerRef={hintContainerRef}
-//       /> */}
-//     </div>
-//   );
-// };
+  return (
+    <div className="flex justify-center items-center h-screen bg-gray-100">
+      {/* <div className="bg-white p-8 rounded shadow">
+        <input
+          type="text"
+          className="w-full mb-4 p-2 border border-gray-300 rounded"
+          value={input}
+          onChange={(event) => setInput(event.target.value)}
+        />
+        <textarea
+          value={text}
+          className="w-full mb-4 p-2 border border-gray-300 rounded"
+          onChange={(event) => setText(event.target.value)}
+        ></textarea>
+        <button
+          className="px-4 py-2 bg-blue-500 text-white rounded"
+          onClick={handleClick}
+        >
+          Click me
+        </button>
+      </div> */}
+      {/* <HintDisplay
+        activeHint={activeHint}
+        hints={hints}
+        showHints={showHints}
+        hintContainerRef={hintContainerRef}
+      /> */}
+    </div>
+  );
+};
 
-// export default App;
+export default App;

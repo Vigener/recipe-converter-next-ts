@@ -74,24 +74,24 @@ function Integration({
       // });
     }
 
-    const systemInstruction1 = `全体量を${resize1}倍にしてください。`;
-    const prompt1 = systemInstruction1 + "\n\n" + csv1;
-    fetchGemini(prompt1).then((result1) => {
-      // console.log(result1);
-      const systemInstruction2 = `全体量を${resize2}倍にしてください。`;
-      const prompt2 = systemInstruction2 + "\n\n" + csv2;
-      fetchGemini(prompt2).then((result2) => {
-        // console.log(result2);
-        const combinedData = result1 + "\n\n" + result2;
-        const systemInstruction3 =
-          "2つのデータをもとに、一つのcsvにまとめてください。\n一行目はIngredient, Quantityというヘッダー情報とし、同様の材料はまとめて、一つの行にし、quantityは足し算をして表示してください。\n※ドライイーストとインスタントドライイーストは同じものなのでドライイーストという名前で一つのものとして考えてください。";
-        const prompt3 = systemInstruction3 + "\n\n" + combinedData;
-        fetchGemini(prompt3).then((result3) => {
-          // document.getElementById("integration-area").value = result3;
-          setResultText(result3);
-        });
-      });
-    });
+    // const systemInstruction1 = `全体量を${resize1}倍にしてください。`;
+    // const prompt1 = systemInstruction1 + "\n\n" + csv1;
+    // fetchGemini(prompt1).then((result1) => {
+    //   // console.log(result1);
+    //   const systemInstruction2 = `全体量を${resize2}倍にしてください。`;
+    //   const prompt2 = systemInstruction2 + "\n\n" + csv2;
+    //   fetchGemini(prompt2).then((result2) => {
+    //     // console.log(result2);
+    //     const combinedData = result1 + "\n\n" + result2;
+    //     const systemInstruction3 =
+    //       "2つのデータをもとに、一つのcsvにまとめてください。\n一行目はIngredient, Quantityというヘッダー情報とし、同様の材料はまとめて、一つの行にし、quantityは足し算をして表示してください。\n※ドライイーストとインスタントドライイーストは同じものなのでドライイーストという名前で一つのものとして考えてください。";
+    //     const prompt3 = systemInstruction3 + "\n\n" + combinedData;
+    //     fetchGemini(prompt3).then((result3) => {
+    //       // document.getElementById("integration-area").value = result3;
+    //       setResultText(result3);
+    //     });
+    //   });
+    // });
   }
 
   const copyToClipboard = async () => {

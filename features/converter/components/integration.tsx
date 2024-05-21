@@ -17,10 +17,63 @@ function Integration({
 }) {
   const [resultText, setResultText] = useState("");
   async function handleClick() {
-    if (!csv1 || !csv2) {
+    if (!csv1 && !csv2) {
       alert("データを貼り付けてください");
       return;
+    } else if (!csv2) {
+      if (resize1 !== 1) {
+        // const systemInstruction1 = `全体量を${resize1}倍にしてください。`;
+        // const prompt1 = systemInstruction1 + "\n\n" + csv1;
+        // fetchGemini(prompt1).then((result1) => {
+        //   setResultText(result1);
+        // });
+        setResultText("Loading...");
+        const result: string = await resizeFetch(csv1, resize1);
+        setResultText(result);
+      } else {
+        setResultText(csv1);
+      }
+    } else if (!csv1) {
+      if (resize2 !== 1) {
+        setResultText("Loading...");
+        const systemInstruction2 = `全体量を${resize2}倍にしてください。`;
+        const prompt2 = systemInstruction2 + "\n\n" + csv2;
+        fetchGemini(prompt2).then((result2) => {
+          setResultText(result2);
+        });
+      } else {
+        setResultText(csv2);
+      }
+    } else {
+      setResultText("Loading...");
+      const preResult1: string = await resizeFetch(csv1, resize1);
+      const preResult2: string = await resizeFetch(csv2, resize2);
+      const combinedResult: string = await integrateFetch(
+        preResult1,
+        preResult2
+      );
+      setResultText(combinedResult);
     }
+
+    async function resizeFetch(csv: string, resize: number): Promise<string> {
+      const systemInstruction = `全体量を${resize}倍にしてください。`;
+      const prompt = systemInstruction + "\n\n" + csv;
+      const result = await fetchGemini(prompt);
+      return result as string;
+    }
+
+    async function integrateFetch(result1: string, result2: string) {
+      const combinedData = result1 + "\n\n" + result2;
+      const systemInstruction3 =
+        "2つのデータをもとに、一つのcsvにまとめてください。\n一行目はIngredient, Quantityというヘッダー情報とし、同様の材料はまとめて、一つの行にし、quantityは足し算をして表示してください。\n※ドライイーストとインスタントドライイーストは同じものなのでドライイーストという名前で一つのものとして考えてください。";
+      const prompt3 = systemInstruction3 + "\n\n" + combinedData;
+      const result = await fetchGemini(prompt3);
+      return result as string;
+      // fetchGemini(prompt3).then((result3) => {
+      //   return result3 ;
+      // });
+    }
+
     const systemInstruction1 = `全体量を${resize1}倍にしてください。`;
     const prompt1 = systemInstruction1 + "\n\n" + csv1;
     fetchGemini(prompt1).then((result1) => {

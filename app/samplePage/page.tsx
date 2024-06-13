@@ -1,6 +1,6 @@
 "use client";
 
-// import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 // // ヒント可能な要素のインターフェース
 // interface HintElement {
@@ -158,20 +158,21 @@
 //   );
 // };
 
-// const handleClick = () => {
-//   alert("Hello, World!");
-// };
+const handleClick = () => {
+  alert("Hello, World!");
+};
 
 // メインコンポーネント
 const App: React.FC = () => {
   // const { activeHint, hints, showHints, hintContainerRef } =
   //   useKeyboardEvents();
-  // const [input, setInput] = useState("");
-  // const [text, setText] = useState("");
+  const [input, setInput] = useState("");
+  const [text, setText] = useState("");
 
   return (
     <div className="flex justify-center items-center h-screen bg-gray-100">
-      {/* <div className="bg-white p-8 rounded shadow">
+      <h1 className="text-4xl font-bold">書きたいことがかける！</h1>
+      <div className="bg-white p-8 rounded shadow">
         <input
           type="text"
           className="w-full mb-4 p-2 border border-gray-300 rounded"
@@ -189,7 +190,7 @@ const App: React.FC = () => {
         >
           Click me
         </button>
-      </div> */}
+      </div>
       {/* <HintDisplay
         activeHint={activeHint}
         hints={hints}

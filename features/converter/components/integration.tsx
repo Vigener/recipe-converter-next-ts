@@ -45,7 +45,6 @@ function Integration({
         setResultText(csv2);
       }
     } else {
-      setResultText("Loading...");
       const preResult1: string = await resizeFetch(csv1, resize1);
       const preResult2: string = await resizeFetch(csv2, resize2);
       const combinedResult: string = await integrateFetch(
@@ -56,10 +55,16 @@ function Integration({
     }
 
     async function resizeFetch(csv: string, resize: number): Promise<string> {
-      const systemInstruction = `全体量を${resize}倍にしてください。`;
-      const prompt = systemInstruction + "\n\n" + csv;
-      const result = await fetchGemini(prompt);
-      return result as string;
+      if (resize > 0.8 && resize <= 1) {
+        // 原因はここだったというか、resizeが整数と浮動小数点数の定義が曖昧だったせいで、===になっていなかった。
+        // とりあえず、0.8 < resize <= 1という条件でresizeが1の場合にも対応できるようにした。
+        return csv;
+      } else {
+        const systemInstruction = `全体量を${resize}倍にしてください。`;
+        const prompt = systemInstruction + "\n\n" + csv;
+        const result = await fetchGemini(prompt);
+        return result as string;
+      }
     }
 
     async function integrateFetch(result1: string, result2: string) {

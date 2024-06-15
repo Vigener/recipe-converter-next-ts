@@ -138,8 +138,8 @@ function ConverterPage() {
           <br />
           <div id="integration" className="mb-4 bg-center">
             <Integration
-              csv1={csv1}
-              csv2={csv2}
+              csv1={recipe1.csv}
+              csv2={recipe2.csv}
               resize1={resize1}
               resize2={resize2}
             />

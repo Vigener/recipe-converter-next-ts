@@ -49,7 +49,7 @@ const HistoryHamburgerMenu = () => {
               ></path>
             </svg>
           </button>
-          <RecipeHistory />
+          {/* <RecipeHistory setRecipe1={} /> */}
         </div>
       </div>
     </div>

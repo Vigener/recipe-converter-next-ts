@@ -2,12 +2,8 @@
 import Link from "next/link";
 import BenchTimeLogo from "../../../images/BenchTimeLogo.png";
 import { useState } from "react";
-
-type LinkProps = {
-  label: string;
-  href: string;
-  description: string;
-};
+import Image from "next/image";
+import { LinkProps } from "@/app/page";
 
 type HeaderProps = {
   links: LinkProps[];
@@ -17,10 +13,12 @@ type HeaderProps = {
 function HeaderLogo() {
   return (
     <div className="flex items-center">
-      <img
-        src={BenchTimeLogo.src}
+      <Image
+        src={BenchTimeLogo}
         alt="Bench Time Logo"
-        className="w-[50px] h-[50px] rounded-full object-cover"
+        width={50}
+        height={50}
+        className="rounded-full object-cover"
       />
     </div>
   );
@@ -113,29 +111,6 @@ export function Header(props: HeaderProps): React.ReactElement {
                         <HeaderLogo />
                       </Link>
                     </div>
-
-                    {/* ログアウトボタン */}
-                    <div className="flex mr-2 w-12">
-                      {props.loginFlag && (
-                        <form method="post" action="/logout">
-                          {/* <Form method="post" action="/logout"> */}
-                          <button
-                            type="submit"
-                            data-mdb-ripple="true"
-                            data-mdb-ripple-color="light"
-                            className="inline-block px-0 py-1 text-center bg-white text-gray-500 font-medium text-xs leading-tight uppercase focus:outline-one focus:ring-0 transition ease-in-out"
-                          >
-                            <img
-                              src="/img/header/icon_logout.png"
-                              className="h-10 inline-block"
-                              alt="ログアウトの画像"
-                            />
-                            <br />
-                          </button>
-                        </form>
-                        // </Form>
-                      )}
-                    </div>
                   </div>
                 </li>
                 {/* メニュー内容は各画面サイズで共有する。 */}
@@ -201,7 +176,7 @@ function MenuList({ links, className }: MenuListProps): React.ReactElement {
         </Link>
       </li>
       {links.map((link) => (
-        <li className={className}>
+        <li className={className} key={link.id}>
           <Link
             href={link.href}
             className="

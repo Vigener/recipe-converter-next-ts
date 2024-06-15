@@ -12,10 +12,11 @@ function NavigationItem({ name, link }: { name: string; link: string }) {
   );
 }
 
-type LinkProps = {
+export type LinkProps = {
   label: string;
   href: string;
   description: string;
+  id: string;
 };
 
 const LINKS = [
@@ -23,21 +24,25 @@ const LINKS = [
     label: "レシピコンバーター",
     href: "./converter",
     description: "レシピをCSV形式のテキストに変換できる機能です。",
+    id: "converter",
   },
   {
     label: "会計管理",
     href: "./accountant",
     description: "サークルの会計管理を行う機能です。",
+    id: "accountant",
   },
   {
     label: "レシピストレージ",
     href: "/recipe-storage",
     description: "レシピを保存、管理できる機能です。",
+    id: "recipe-storage",
   },
   {
     label: "活動日の確認",
     href: "/activity-calendar",
     description: "サークルの活動予定をカレンダー形式で確認できる機能です。",
+    id: "activity-calendar",
   },
 ];
 
@@ -46,7 +51,7 @@ function Navigation() {
     <nav className="flex flex-col bg-[#f1f1f1] p-4">
       <ul>
         {LINKS.map((link: LinkProps) => (
-          <NavigationItem name={link.label} link={link.href} />
+          <NavigationItem name={link.label} link={link.href} key={link.id} />
         ))}
       </ul>
     </nav>
@@ -75,6 +80,7 @@ function HomeContent() {
         {LINKS.map((link: LinkProps) => (
           <a
             href={link.href}
+            key={link.id}
             className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
             // target="_blank"
             rel="noopener noreferrer"

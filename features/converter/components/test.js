@@ -1,19 +1,8 @@
-// function updateRecipeHistory(recipeHistory, newRecipe) {
-//   // lastCookedAtの値を'yyyy-mm-dd'の形式に修正
-//   newRecipe.lastCookedAt = newRecipe.lastCookedAt.split("T")[0];
+import { fetchGemini } from "@/features/Gemini/fetchGemini";
 
-//   // 新しいレシピを追加
-//   recipeHistory.push(newRecipe);
-
-//   // lastCookedAtの日付部分のみを使用して降順でソート
-//   recipeHistory.sort((a, b) => {
-//     const dateA = new Date(a.lastCookedAt);
-//     const dateB = new Date(b.lastCookedAt);
-//     return dateB - dateA;
-//   });
-
-//   return recipeHistory;
-// }
+function test() {
+  const prompt = 
+}
 
 function updateRecipeHistory(recipeHistory, newRecipe) {
   // lastCookedAtの値を'yyyy-mm-dd'の形式に修正
@@ -45,8 +34,8 @@ const newRecipe = {
   lastCookedAt: new Date().toISOString(),
 };
 
-newRecipe.lastCookedAt = newRecipe.lastCookedAt.split("T")[0];
+// newRecipe.lastCookedAt = newRecipe.lastCookedAt.split("T")[0];
 
-recipeHistory = updateRecipeHistory(recipeHistory, newRecipe);
+// recipeHistory = updateRecipeHistory(recipeHistory, newRecipe);
 
-console.log(recipeHistory);
+// console.log(recipeHistory);

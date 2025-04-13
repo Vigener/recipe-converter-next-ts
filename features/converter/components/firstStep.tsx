@@ -133,7 +133,7 @@ function FirstStep(props: firstStepProps): JSX.Element {
         id={`ingredients_data${props.num}`}
         value={props.pastedData}
         onChange={(e) => props.setPastedData(e.target.value)}
-        className="border border-gray-300 rounded p-2 mb-0 h-28 px-2"
+        className="border border-gray-300 rounded p-2 mb-0 h-28 px-2 w-full"
       ></textarea>
       <br />
       <button

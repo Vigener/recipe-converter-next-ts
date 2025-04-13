@@ -101,39 +101,44 @@ function ConverterPage() {
           // setCsv2={setCsv2}
         />
         <div className="md:w-3/4 lg:w-full">
+          {/* <div className="md:w-3/4 lg:w-full"> */}
           <div id="foreach-recipe" className="mb-4 md:flex">
-            <FirstStep
-              num={1}
-              pastedData={pastedData1}
-              setPastedData={setPastedData1}
-              portion={recipe1.portion}
-              setPortion={(portion: string) =>
-                setRecipe1({ ...recipe1, portion })
-              }
-              title={recipe1.title}
-              setTitle={(title: string) => setRecipe1({ ...recipe1, title })}
-              // csv={csv1}
-              // setCsv={setCsv1}
-              csv={recipe1.csv}
-              setCsv={(csv: string) => setRecipe1({ ...recipe1, csv })}
-              resize={resize1}
-              setResize={setResize1}
-            />
-            <FirstStep
-              num={2}
-              pastedData={pastedData2}
-              setPastedData={setPastedData2}
-              portion={recipe2.portion}
-              setPortion={(portion: string) =>
-                setRecipe2({ ...recipe2, portion })
-              }
-              title={recipe2.title}
-              setTitle={(title: string) => setRecipe2({ ...recipe2, title })}
-              csv={recipe2.csv}
-              setCsv={(csv: string) => setRecipe2({ ...recipe2, csv })}
-              resize={resize2}
-              setResize={setResize2}
-            />
+            <div id="recipe1" className="mx-1">
+              <FirstStep
+                num={1}
+                pastedData={pastedData1}
+                setPastedData={setPastedData1}
+                portion={recipe1.portion}
+                setPortion={(portion: string) =>
+                  setRecipe1({ ...recipe1, portion })
+                }
+                title={recipe1.title}
+                setTitle={(title: string) => setRecipe1({ ...recipe1, title })}
+                // csv={csv1}
+                // setCsv={setCsv1}
+                csv={recipe1.csv}
+                setCsv={(csv: string) => setRecipe1({ ...recipe1, csv })}
+                resize={resize1}
+                setResize={setResize1}
+              />
+            </div>
+            <div id="recipe2" className="mx-1">
+              <FirstStep
+                num={2}
+                pastedData={pastedData2}
+                setPastedData={setPastedData2}
+                portion={recipe2.portion}
+                setPortion={(portion: string) =>
+                  setRecipe2({ ...recipe2, portion })
+                }
+                title={recipe2.title}
+                setTitle={(title: string) => setRecipe2({ ...recipe2, title })}
+                csv={recipe2.csv}
+                setCsv={(csv: string) => setRecipe2({ ...recipe2, csv })}
+                resize={resize2}
+                setResize={setResize2}
+              />
+            </div>
           </div>
           <br />
           <div id="integration" className="mb-4 bg-center">

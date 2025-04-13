@@ -7,6 +7,7 @@ export function fetchGemini(prompt: string) {
       },
       body: JSON.stringify({ prompt_post: prompt }),
     });
+    console.log(res);
     const json = await res.json();
     return json.message;
   };

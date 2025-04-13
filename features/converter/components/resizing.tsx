@@ -22,8 +22,8 @@ function Resizing({
 }) {
   return (
     <div
-      className="md:w-1/2 px-auto mx-auto
-    "
+      // className="px-auto mx-auto"
+      className="px-auto mx-auto"
     >
       <div className="">
         <label htmlFor="title" className="block font-bold mb-1 mx-2 text-sm">

@@ -1,5 +1,6 @@
 import Button from "@/app/components/elements/Button";
 import React from "react";
+import { saveRecipe } from "@/features/recipes/fetchRecipes";
 
 function Resizing({
   title,
@@ -20,11 +21,18 @@ function Resizing({
   resize: number;
   setResize: any;
 }) {
+  // 保存ボタンのクリック処理
+  const handleSave = async () => {
+    try {
+      await saveRecipe(title, portion, csv);
+      alert("レシピを保存しました");
+    } catch (e) {
+      alert("保存に失敗しました");
+    }
+  };
+
   return (
-    <div
-      // className="px-auto mx-auto"
-      className="px-auto mx-auto"
-    >
+    <div className="px-auto mx-auto">
       <div className="">
         <label htmlFor="title" className="block font-bold mb-1 mx-2 text-sm">
           レシピ名
@@ -59,7 +67,9 @@ function Resizing({
         onChange={(e) => setCsv(e.target.value)}
         className="border border-gray-300 rounded p-2 mx-auto w-full"
       ></textarea>
-      <Button size={"small"}>データを保存</Button>
+      <Button size={"small"} onClick={handleSave}>
+        データを保存
+      </Button>
       <div className="mt-1 mb-1 flex items-center justify-center">
         <span className="mt-">全体量を</span>
         <input

@@ -110,14 +110,16 @@ function ConverterPage() {
                 setPastedData={setPastedData1}
                 portion={recipe1.portion}
                 setPortion={(portion: string) =>
-                  setRecipe1({ ...recipe1, portion })
+                  setRecipe1((prev) => ({ ...prev, portion }))
                 }
                 title={recipe1.title}
-                setTitle={(title: string) => setRecipe1({ ...recipe1, title })}
-                // csv={csv1}
-                // setCsv={setCsv1}
+                setTitle={(title: string) =>
+                  setRecipe1((prev) => ({ ...prev, title }))
+                }
                 csv={recipe1.csv}
-                setCsv={(csv: string) => setRecipe1({ ...recipe1, csv })}
+                setCsv={(csv: string) =>
+                  setRecipe1((prev) => ({ ...prev, csv }))
+                }
                 resize={resize1}
                 setResize={setResize1}
               />

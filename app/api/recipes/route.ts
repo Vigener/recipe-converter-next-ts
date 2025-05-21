@@ -31,15 +31,15 @@ export const GET = async (req: Request) => {
 };
 
 export const POST = async (req: Request, res: NextResponse) => {
-  const { title } = await req.json();
+  const { title, portion, csv } = await req.json();
   try {
     await connect();
-    if (!title) {
+    if (!title || !portion || !csv) {
       return NextResponse.json({ error: "Missing fields" }, { status: 400 });
     }
     // データベースにレシピを保存
     const recipe = await prisma.recipe.create({
-      data: { title },
+      data: { title, portion, csv },
     });
     return NextResponse.json(recipe);
   } catch (error) {

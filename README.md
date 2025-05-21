@@ -1,3 +1,12 @@
+# 概要
+- 筑波大学パン作りサークル「Bench Time」のホームページ(仮）
+- 現在は主に、活動の準備に用いるレシピ整形ツールのみを実装済み（データベース機能追加予定）
+
+## Webアプリケーションリンク
+
+
+[Bench Time HP](https://recipe-converter-next-ts.vercel.app/)
+
 ## 技術スタック
 
 - TypeScript

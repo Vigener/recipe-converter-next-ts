@@ -3,18 +3,10 @@ import HistoryList from "./HistoryList";
 import { RecipeState } from "@/app/converter/page";
 
 interface RecipeHistoryProps {
-  // setCsv1: React.Dispatch<React.SetStateAction<string>>;
-  // setCsv2: React.Dispatch<React.SetStateAction<string>>;
   setRecipe1: React.Dispatch<React.SetStateAction<RecipeState>>;
   setRecipe2: React.Dispatch<React.SetStateAction<RecipeState>>;
 }
 
-// const RecipeHistory = (
-//   // csv1: string,
-//   setCsv1: any,
-//   // csv2: string,
-//   setCsv2: any
-// ) => {
 const RecipeHistory: React.FC<RecipeHistoryProps> = (props) => {
   const [open, setOpen] = React.useState(false);
 
@@ -26,9 +18,7 @@ const RecipeHistory: React.FC<RecipeHistoryProps> = (props) => {
       {/* PCの場合のみ表示する要素 */}
       <div className="hidden lg:block">
         <HistoryList
-          // csv1={csv1}
           setRecipe1={props.setRecipe1}
-          // csv2={csv2}
           setRecipe2={props.setRecipe2}
         />
       </div>
@@ -52,35 +42,14 @@ const RecipeHistory: React.FC<RecipeHistoryProps> = (props) => {
             ></path>
           </svg>
         )}
-        {/* {open && (
-          <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center z-50">
-            <div
-              className="absolute top-0 left-0 w-full h-full bg-black opacity-50"
-              onClick={onClickClose}
-            ></div>
-            <div className="bg-white w-1/4 h-full overflow-auto">
-              <svg
-                onClick={onClickClose}
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-5"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M10 8.586l4.293-4.293a1 1 0 011.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 011.414-1.414L10 8.586z"
-                  clipRule="evenodd"
-                />
-              </svg>
-              <HistoryList />
-            </div>
-          </div>
-        )} */}
         {open && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-start items-center z-50">
+          <div
+            className="fixed inset-0 bg-black bg-opacity-50 flex justify-start items-center z-50"
+            onClick={onClickClose} // ← ここで外側クリック時に閉じる
+          >
             <div
               className="bg-white max-w-60 h-full overflow-auto relative z-10"
-              onClick={(e) => e.stopPropagation()}
+              onClick={(e) => e.stopPropagation()} // ← モーダル内クリックは伝播を止める
             >
               <svg
                 onClick={onClickClose}
@@ -96,9 +65,7 @@ const RecipeHistory: React.FC<RecipeHistoryProps> = (props) => {
                 />
               </svg>
               <HistoryList
-                // csv1={csv1}
                 setRecipe1={props.setRecipe1}
-                // csv2={csv2}
                 setRecipe2={props.setRecipe2}
               />
             </div>

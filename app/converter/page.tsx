@@ -6,7 +6,7 @@ import FirstStep from "@/features/converter/components/firstStep";
 import Integration from "@/features/converter/components/integration";
 import Button from "../components/elements/Button";
 import RecipeHistory from "@/features/converter/components/RecipeHistory";
-import HistoryHamburgerMenu from "@/features/converter/components/HistoryHamburgerMenu";
+import HistoryHamburugerMenu from "@/features/converter/components/HistoryHamburgerMenu";
 // import { Metadata } from "next";
 
 function Modal(props: { show: boolean; setShow: (show: boolean) => void }) {

@@ -15,10 +15,20 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
+// model Recipe {
+//   id        Int      @id @default(autoincrement())
+//   title     String
+//   portion   String
+//   csv       String
+//   createdAt DateTime @default(now())
+// }
+
 model Recipe {
   id        Int      @id @default(autoincrement())
   title     String
-  portion   String
-  csv       String
+  quantity  String
+  ingredients Json
+  lastCooked DateTime @default(now())
   createdAt DateTime @default(now())
+  url       String
 }

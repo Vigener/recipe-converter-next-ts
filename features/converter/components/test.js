@@ -1,41 +1,27 @@
-import { fetchGemini } from "@/features/Gemini/fetchGemini";
-
-function test() {
-  const prompt = 
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.csvToIngredients = csvToIngredients;
+exports.csvToIngredientsJson = csvToIngredientsJson;
+/**
+ * CSV形式の文字列をJSON配列に変換する関数
+ * @param csv - 例: "強力粉, 260g\n薄力粉, 40g\n..."
+ * @returns 例: [{ name: "強力粉", quantity: "260g" }, ...]
+ */
+function csvToIngredients(csv) {
+    return csv
+        .split("\n")
+        .map(function (line) { return line.trim(); })
+        .filter(function (line) { return line.length > 0; })
+        .map(function (line) {
+        var _a = line.split(",").map(function (s) { return s.trim(); }), name = _a[0], quantity = _a[1];
+        return { name: name, quantity: quantity };
+    });
 }
-
-function updateRecipeHistory(recipeHistory, newRecipe) {
-  // lastCookedAtの値を'yyyy-mm-dd'の形式に修正
-  // newRecipe.lastCookedAt = newRecipe.lastCookedAt.split("T")[0];
-
-  // 新しいレシピを追加
-  recipeHistory.push(newRecipe);
-
-  // lastCookedAtの日付部分のみを使用して降順でソート
-  recipeHistory.sort((a, b) => {
-    const dateA = new Date(a.lastCookedAt).getTime();
-    const dateB = new Date(b.lastCookedAt).getTime();
-    return dateB - dateA;
-  });
-
-  return recipeHistory;
+// 文字列で返したい場合
+function csvToIngredientsJson(csv) {
+    return JSON.stringify(csvToIngredients(csv));
 }
-
-// テスト
-let recipeHistory = [
-  { id: 1, name: "レシピ1", lastCookedAt: "2022-01-01" },
-  { id: 2, name: "レシピ2", lastCookedAt: "2022-01-02" },
-  { id: 3, name: "レシピ3", lastCookedAt: "2022-01-03" },
-];
-
-const newRecipe = {
-  id: 4,
-  name: "レシピ4",
-  lastCookedAt: new Date().toISOString(),
-};
-
-// newRecipe.lastCookedAt = newRecipe.lastCookedAt.split("T")[0];
-
-// recipeHistory = updateRecipeHistory(recipeHistory, newRecipe);
-
-// console.log(recipeHistory);
+// 使用例
+var csvData = "\n\u5F37\u529B\u7C89, 260g\n\u8584\u529B\u7C89, 40g\n\u7802\u7CD6, 30g\n\u5869, 5g\n\u5375(L\u30B5\u30A4\u30BA), 1\u500B\n\u725B\u4E73, 200ml\n\u7121\u5869\u30D0\u30BF\u30FC, 60g\n\u30C9\u30E9\u30A4\u30A4\u30FC\u30B9\u30C8, 5g\n\u30B7\u30CA\u30E2\u30F3\u30B7\u30E5\u30AC\u30FC, \u9069\u91CF\n\u30EC\u30FC\u30BA\u30F3, \u9069\u91CF\n\u725B\u4E73, \u9069\u91CF\n\u7C89\u7CD6, 40g\n";
+console.log(csvToIngredients(csvData));
+console.log(csvToIngredientsJson(csvData));

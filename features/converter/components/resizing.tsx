@@ -21,10 +21,34 @@ function Resizing({
   resize: number;
   setResize: any;
 }) {
+  const [url, setUrl] = React.useState("");
+
+  /**
+   * CSV形式の文字列をJSON配列に変換する関数
+   * @param csv - 例: "強力粉, 260g\n薄力粉, 40g\n..."
+   * @returns 例: [{ name: "強力粉", quantity: "260g" }, ...]
+   */
+  function csvToIngredients(csv: string): { name: string; quantity: string }[] {
+    return csv
+      .split("\n")
+      .map((line) => line.trim())
+      .filter((line) => line.length > 0)
+      .map((line) => {
+        const [name, quantity] = line.split(",").map((s) => s.trim());
+        return { name, quantity };
+      });
+  }
+
   // 保存ボタンのクリック処理
   const handleSave = async () => {
+    if (!title || !portion || !csv || !url) {
+      alert("レシピ名、分量、CSVデータ、URLをすべて入力してください");
+      return;
+    }
+    // CSVデータをJSON形式に変換
+    const jsonData = csvToIngredients(csv);
     try {
-      await saveRecipe(title, portion, csv);
+      await saveRecipe(title, portion, jsonData, url);
       alert("レシピを保存しました");
     } catch (e) {
       alert("保存に失敗しました");
@@ -67,9 +91,33 @@ function Resizing({
         onChange={(e) => setCsv(e.target.value)}
         className="border border-gray-300 rounded p-2 mx-auto w-full"
       ></textarea>
-      <Button size={"small"} onClick={handleSave}>
-        データを保存
-      </Button>
+      {/* urlエリア */}
+      <div className="mt-2">
+        <div className="flex items-center gap-2">
+          <label
+            htmlFor="url"
+            className="block font-bold mb-1 mx-2 text-sm whitespace-nowrap"
+          >
+            URL
+          </label>
+          <textarea
+            name="url"
+            id="url"
+            cols={30}
+            rows={1}
+            value={url}
+            onChange={(e) => setUrl(e.target.value)}
+            className="border border-gray-300 rounded p-2 w-full"
+            placeholder="URLを入力してください"
+          ></textarea>
+        </div>
+      </div>
+      {/* 保存ボタン */}
+      <div className="mt-2">
+        <Button size={"small"} onClick={handleSave}>
+          データを保存
+        </Button>
+      </div>
       <div className="mt-1 mb-1 flex items-center justify-center">
         <span className="mt-">全体量を</span>
         <input

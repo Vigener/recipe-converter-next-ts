@@ -6,11 +6,16 @@ export async function fetchRecipes() {
   return res.json();
 }
 
-export async function saveRecipe(title: string, portion: string, csv: string) {
+export async function saveRecipe(
+  title: string,
+  quantity: string,
+  ingredients: any,
+  url: string
+) {
   const res = await fetch("/api/recipes", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ title, portion, csv }),
+    body: JSON.stringify({ title, quantity, ingredients, url }),
   });
   if (!res.ok) throw new Error("レシピの保存に失敗しました");
   return res.json();
